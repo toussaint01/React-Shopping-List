@@ -72,3 +72,14 @@
      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
    }
 }
+hr{
+  width: 100%;
+}
+
+.ingredient-buttons{
+  display: flex;
+  gap: 1em;
+  button{
+    padding: 1rem 2rem;
+  }
+}

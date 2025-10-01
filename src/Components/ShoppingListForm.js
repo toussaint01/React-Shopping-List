@@ -21,7 +21,7 @@ return (
 
           <div className="space-y-2">
             <label htmlFor="imageUrl" className="block text-gray-700 font-medium">
-              image url
+              Image Url
             </label>
             <input
               className="AddFriendinput w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400"
@@ -38,7 +38,7 @@ return (
               htmlFor="description"
               className="block text-gray-700 font-medium"
             >
-              description
+              Description
             </label>
             <input
               className="AddFriendinput w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400"

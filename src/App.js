@@ -92,6 +92,9 @@ function App() {
             <ShoppingListItem
               selectedIngredient={selectedIngredient}
               shoppingList={shoppingList}
+              setShoppingList={setShoppingList}
+              onHandleSelectedIngredient={setSelectedIngredient}
+
             />
           </div>
         ) : null}
