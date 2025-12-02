@@ -1,7 +1,7 @@
 .shoppingList__wrapper {
-    margin: 20px 0;
-    display: flex;
-    justify-content: space-around;
+  margin: 20px 0;
+  display: flex;
+  justify-content: space-around;
 }
 
 .shoppingList__item {
@@ -52,34 +52,74 @@
 
 
 .btn {
-    border: 1px solid #564bc2;
-    padding: 1rem 2rem;
-    text-align: center;
-    cursor: pointer;
-    background: linear-gradient(135deg, #6a5acd, #564bc2);
-    color: #ffffffda;
-    box-shadow: 4px 5px 5px rgb(134, 133, 133);
-    font-weight: 600;
-   font-size: 1rem;
-   letter-spacing: 0.5px;
+  border: 1px solid #564bc2;
+  padding: 1rem 2rem;
+  text-align: center;
+  cursor: pointer;
+  background: linear-gradient(135deg, #6a5acd, #564bc2);
+  color: #ffffffda;
+  box-shadow: 4px 5px 5px rgb(134, 133, 133);
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
 
-    &:hover {
-        background: linear-gradient(135deg, #483d8b, #362f79);
-        transform: translateY(-2px);
-    }
-    &:active {
-     transform: translateY(0);
-     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
-   }
+  &:hover {
+    background: linear-gradient(135deg, #483d8b, #362f79);
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+  }
 }
-hr{
+
+hr {
   width: 100%;
 }
 
-.ingredient-buttons{
+.ingredient-buttons {
   display: flex;
   gap: 1em;
-  button{
+
+  button {
     padding: 1rem 2rem;
   }
+}
+
+.shoppingList-categories {
+  margin: 1.5rem 0;
+  border-top: 4px dotted grey;
+  padding: 10px 0;
+}
+
+.category-list {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  padding: 20px 0;
+  list-style: none;
+}
+
+.category-btn {
+  padding: 0.6rem 1.2rem;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  background: #f7f7f7;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.25s ease;
+  font-size: 0.95rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+}
+
+.category-btn:hover {
+  background: #ececff;
+  border-color: #6b63d9;
+  color: #4a3fb3;
+  transform: translateY(-2px);
+}
+
+.category-btn:active {
+  transform: scale(0.97);
 }

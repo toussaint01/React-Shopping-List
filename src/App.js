@@ -1,4 +1,6 @@
 import { use, useState } from "react";
+import { Toaster } from 'react-hot-toast';
+
 import "./App.scss";
 
 import ShoppingListItem from "./Components/ShoppingListItem";
@@ -11,6 +13,7 @@ const initialItems = [
     ingredient: "Milk",
     image: "images/milk.jpg",
     description: "Green Cap Semi Skimmed Milk",
+    category: "Dairy"
   },
 
   {
@@ -18,6 +21,7 @@ const initialItems = [
     ingredient: "Sugar",
     image: "images/sugar.jpg",
     description: "Brown Sugar",
+    category:"Baking"
   },
 
   {
@@ -25,7 +29,8 @@ const initialItems = [
     ingredient: "Bread",
     image: "images/bread.jpg",
     description: "Sliced Kingsmill Bread",
-  },
+    category:"Carbohydrates"
+  }, 
 ];
 
 function App() {
@@ -34,15 +39,24 @@ function App() {
   const [ingredientDescription, setIngredientDescription] = useState("");
   const [shoppingList, setShoppingList] = useState(initialItems);
   const [selectedIngredient, setSelectedIngredient] = useState("");
+  const [ingredientCategory, setIngredientCategory] = useState("")
+
+  //Makes categories a unique list so it wont show 'Dairy' 2x when user enters it into the form. Seen as just 'Dairy'
+  //Set() is like an array but it removes duplicates - set gives back an object {}, change it to array to access
+  const categories = [...new Set(shoppingList.map(i => i.category))];
 
   function handleSelectedIngredient(ingredient){
     setSelectedIngredient((prev) => prev === ingredient ? "" : ingredient)
+  }
+  function handleSelectedCategory(category){
+    setIngredientCategory((prev) => prev === category ? "" : category)
+
   }
 
   function handleFormSubmit(e) {
     e.preventDefault();
 
-    if (!ingredientName || !ingredientImage || !ingredientDescription) return;
+    if (!ingredientName || !ingredientImage || !ingredientDescription || !ingredientCategory) return;
 
     const id = crypto.randomUUID();
     const newIngredient = {
@@ -50,6 +64,7 @@ function App() {
       ingredient: ingredientName,
       image: `${ingredientImage}?=${id}`,
       description: ingredientDescription,
+      category: ingredientCategory
     };
     setShoppingList((shoppingList) => [...shoppingList, newIngredient]);
     setIngredientName("");
@@ -57,8 +72,10 @@ function App() {
     setIngredientDescription("");
   }
 
+
   return (
     <div className="container mx-auto">
+      <Toaster position="top-center" reverseOrder={false} />
       <h1 className="text-3xl font-bold underline text-center mt-4 mb-4 tracking-wide">
         Shopping List!
       </h1>
@@ -71,13 +88,29 @@ function App() {
           setIngredientImage={setIngredientImage}
           ingredientDescription={ingredientDescription}
           setIngredientDescription={setIngredientDescription}
+          ingredientCategory={ingredientCategory}
+          setIngredientCategory={setIngredientCategory}
         />
+      </div>
+      <div className="shoppingList-categories">
+        <ul className="category-list">
+          {categories.map((category) => (
+            <li key={category}>
+              <button className="category-btn" onClick={() => handleSelectedCategory(category)}>
+                {category}
+              </button>
+            </li>
+          ))}
+        </ul>
       </div>
 
       <div className="shoppingList__wrapper">
         <div className="sidebar">
           <ul>
-            {shoppingList.map((item) => (
+            {(ingredientCategory
+              ? shoppingList.filter((i) => i.category === ingredientCategory)
+              : shoppingList
+            ).map((item) => (
               <IngredientListItem
                 ingredient={item.ingredient}
                 key={item.id}
@@ -86,7 +119,6 @@ function App() {
             ))}
           </ul>
         </div>
-
         {selectedIngredient ? (
           <div className="shoppingList__item">
             <ShoppingListItem
@@ -94,7 +126,6 @@ function App() {
               shoppingList={shoppingList}
               setShoppingList={setShoppingList}
               onHandleSelectedIngredient={setSelectedIngredient}
-
             />
           </div>
         ) : null}

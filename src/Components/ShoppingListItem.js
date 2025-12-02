@@ -1,4 +1,6 @@
 import { use, useState } from "react";
+import toast from 'react-hot-toast';
+
 export default function ShoppingListItem({selectedIngredient, shoppingList, onHandleSelectedIngredient, setShoppingList}) {
   const [editText, setEditText] = useState(false);
   const [newDescription, setNewDescription] = useState("");
@@ -10,7 +12,7 @@ export default function ShoppingListItem({selectedIngredient, shoppingList, onHa
     setEditText(!editText);
   }
   function handleRemoveItem(id) {
-    alert(`${selectedIngredient} has now been removed from the shopping list`)
+    toast.success(`${item.ingredient} has now been removed from the shopping list`);
     setShoppingList((list) =>
       //return an array which meets this condition
       list.filter((item) => item.id !== id)

@@ -1,4 +1,6 @@
-export default function ShoppingListForm({handleFormSubmit, setIngredientName, ingredientName, ingredientImage, setIngredientImage, ingredientDescription, setIngredientDescription }){
+export default function ShoppingListForm(
+  {handleFormSubmit, setIngredientName, ingredientName, ingredientImage, setIngredientImage, ingredientDescription, setIngredientDescription, ingredientCategory, setIngredientCategory }
+){
 return (
    <form
           className="form bg-white shadow-md rounded-2xl p-6 w-full max-w-md space-y-4"
@@ -46,6 +48,22 @@ return (
               id="description"
               value={ingredientDescription}
               onChange={(e) => setIngredientDescription(e.target.value)}
+              required
+            />
+          </div>
+          
+          <div className="space-y-2">
+            <label
+              htmlFor="category"
+              className="block text-gray-700 font-medium"
+            >
+              Category
+            </label>
+            <input
+              className="AddFriendinput w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400"
+              type="text"
+              id="category"
+              onChange={(e) => setIngredientCategory(e.target.value)}
               required
             />
           </div>
