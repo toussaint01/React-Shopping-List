@@ -1,3 +1,14 @@
+.header-text {
+  background: linear-gradient(90deg, #bb4141, #2c6d2c);
+    background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 3px;
+  font-size: 3rem;
+  font-weight: 500;
+}
+
 .shoppingList__wrapper {
   margin: 20px 0;
   display: flex;
@@ -56,15 +67,15 @@
   padding: 1rem 2rem;
   text-align: center;
   cursor: pointer;
-  background: linear-gradient(135deg, #6a5acd, #564bc2);
+  background: linear-gradient(135deg, #6359bd, #6a5acd);
   color: #ffffffda;
-  box-shadow: 4px 5px 5px rgb(134, 133, 133);
+  box-shadow: 4px 6px 4px rgb(134, 133, 133);
   font-weight: 600;
   font-size: 1rem;
   letter-spacing: 0.5px;
 
   &:hover {
-    background: linear-gradient(135deg, #483d8b, #362f79);
+    background: linear-gradient(135deg,  #474088, #50449b);
     transform: translateY(-2px);
   }
 
@@ -109,8 +120,15 @@ hr {
   font-weight: 600;
   cursor: pointer;
   transition: 0.25s ease;
-  font-size: 0.95rem;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+  font-size: 1.1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  letter-spacing: 1.2px;
+
+  &__showAll {
+    background: #b2b2f7;
+    border-color: #6b63d9;
+    color: #000;
+  }
 }
 
 .category-btn:hover {
@@ -122,4 +140,11 @@ hr {
 
 .category-btn:active {
   transform: scale(0.97);
+}
+
+.category-btn__active {
+  background: #ececff;
+  border-color: #6b63d9;
+  color: #4a3fb3;
+  transform: translateY(-2px);
 }

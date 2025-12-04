@@ -6,6 +6,8 @@ import "./App.scss";
 import ShoppingListItem from "./Components/ShoppingListItem";
 import IngredientListItem from "./Components/IngredientListItem";
 import ShoppingListForm from "./Components/ShoppingListForm";
+import ShoppingListCategory from "./Components/ShoppingListCategories";
+import Motion from "./Components/Motion";
 
 const initialItems = [
   {
@@ -40,18 +42,16 @@ function App() {
   const [shoppingList, setShoppingList] = useState(initialItems);
   const [selectedIngredient, setSelectedIngredient] = useState("");
   const [ingredientCategory, setIngredientCategory] = useState("")
-
-  //Makes categories a unique list so it wont show 'Dairy' 2x when user enters it into the form. Seen as just 'Dairy'
-  //Set() is like an array but it removes duplicates - set gives back an object {}, change it to array to access
-  const categories = [...new Set(shoppingList.map(i => i.category))];
+  const [activeCategoryClass, setActiveCategoryClass] = useState("")
 
   function handleSelectedIngredient(ingredient){
     setSelectedIngredient((prev) => prev === ingredient ? "" : ingredient)
   }
   function handleSelectedCategory(category){
     setIngredientCategory((prev) => prev === category ? "" : category)
-
+    setActiveCategoryClass((prev) => prev === category ? "" : category)
   }
+
 
   function handleFormSubmit(e) {
     e.preventDefault();
@@ -75,9 +75,10 @@ function App() {
 
   return (
     <div className="container mx-auto">
+      <Motion />
       <Toaster position="top-center" reverseOrder={false} />
-      <h1 className="text-3xl font-bold underline text-center mt-4 mb-4 tracking-wide">
-        Shopping List!
+      <h1 className="font-bold text-center mt-4 mb-4 header-text">
+        Toussaint's Personal Shopping List!
       </h1>
       <div className="shoppingList__input flex justify-center p-6 bg-neutral-100">
         <ShoppingListForm
@@ -92,17 +93,7 @@ function App() {
           setIngredientCategory={setIngredientCategory}
         />
       </div>
-      <div className="shoppingList-categories">
-        <ul className="category-list">
-          {categories.map((category) => (
-            <li key={category}>
-              <button className="category-btn" onClick={() => handleSelectedCategory(category)}>
-                {category}
-              </button>
-            </li>
-          ))}
-        </ul>
-      </div>
+      <ShoppingListCategory onHandleSelectedCategory={handleSelectedCategory} shoppingList={shoppingList} activeCategory={activeCategoryClass} setIngredientCategory={setIngredientCategory} ingredientCategory={ingredientCategory} />
 
       <div className="shoppingList__wrapper">
         <div className="sidebar">
